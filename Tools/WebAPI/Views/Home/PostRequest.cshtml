@@ -1,0 +1,114 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PostRequest</title>
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            //Post 无参数请求
+            $("#btn1").click(function () {
+                $.post("/api/post/PostWithNullParamInput", null, function (data, status) {
+                    alert(data);
+                });
+            });
+            //Post 一个参数的请求
+            $("#btn2").click(function () {
+                $.post("/api/post/PostWithOneParamInput", { "": "一个参数" }, function (data, status) {
+                    alert(data);
+                });
+            });
+            //Post 两个参数的请求
+            $("#btn3").click(function () {
+                $.ajax({
+                    type: "post",
+                    url: "/api/post/PostWithTwoParamInput",
+                    contentType: "application/json",
+                    data: JSON.stringify({ id: 1001, msg: "一个参数" }),
+                    success: function (data, status) {
+                        alert(data);
+                    }
+                });
+            });
+            //Post 实体参数
+            $("#btn4").click(function () {
+                $.post("/api/post/PostWithEntityInput", { id: 1001, msg: "实体参数1" }, function (data, status) {
+                    alert(data);
+                });
+            });
+            //Post Json字符串(实体+基础数据类型)请求
+            $("#btn5").click(function () {
+                var list = {
+                    "Guid": "实体标识",
+                    "EntityInfo": {
+                        "id": 1001,
+                        "msg": "实体参数"
+                    }
+                }
+                $.ajax({
+                    type: "post",
+                    url: "/api/post/PostWithMultiParamInput",
+                    contentType: "application/json",
+                    data: JSON.stringify(list),
+                    success: function (data, status) {
+                        alert(data);
+                    }
+                });
+            });
+            //Post 对象集合请求
+            $("#btn6").click(function () {
+                var List = [
+                    { id: 1001, msg: "参数1" },
+                    { id: 1002, msg: "参数2" },
+                    { id: 1003, msg: "参数3" }
+                ];
+                $.ajax({
+                    type: "post",
+                    url: "/api/post/PostWithListParamInput",
+                    contentType: "application/json",
+                    data: JSON.stringify(List),
+                    success: function (data, status) {
+                        alert(data);
+                    }
+                });
+            });
+            //Post 数组集合请求
+            $("#btn7").click(function () {
+                var List = [
+                    { id: 1001, msg: "参数1" },
+                    { id: 1002, msg: "参数2" },
+                    { id: 1003, msg: "参数3" }
+                ];
+                $.ajax({
+                    type: "post",
+                    url: "/api/post/PostWithArrayParamInput",
+                    contentType: "application/json",
+                    data: JSON.stringify(List),
+                    success: function (data, status) {
+                        alert(data);
+                    }
+                });
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <input type="button" id="btn1" value="Post：无参数的请求" /><br /><br />
+        <input type="button" id="btn2" value="Post：一个参数的请求" /><br /><br />
+        <input type="button" id="btn3" value="Post：两个参数的请求" /><br /><br />
+        <input type="button" id="btn4" value="Post: 实体参数请求" /><br /><br />
+        <input type="button" id="btn5" value="Post: Json字符串(实体+基础数据类型)请求" /><br /><br />
+        <input type="button" id="btn6" value="Post: 对象集合请求" /><br /><br />
+        <input type="button" id="btn7" value="Post: 数组集合请求" /><br /><br />
+    </div>
+</body>
+</html>

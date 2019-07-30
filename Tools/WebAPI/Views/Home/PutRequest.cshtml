@@ -1,0 +1,66 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PutRequest</title>
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //Put:无参数请求
+            $("#btn1").click(function () {
+                $.ajax({
+                    type: "put",
+                    url: "/api/put/PutWithNOParamInput",
+                    data: null,
+                    success: function (data, status) {
+                        alert(data);
+                    }
+                });
+            });
+            //Put:实体参数请求
+            $("#btn2").click(function () {
+                $.ajax({
+                    type: "put",
+                    url: "/api/put/PutWithEntityParamInput",
+                    data: { id: 1001, msg: "实体参数1" },
+                    success: function (data, status) {
+                        alert(data);
+                    }
+                });
+            });
+
+            ////Put:JSON参数请求
+            $("#btn3").click(function () {
+                var msg = { id: 1002, msg: "entity param" };
+                var jsonmsg = JSON.stringify(msg);
+                $.ajax({
+                    type: "put",
+                    contentType: "application/json",
+                    url: "/api/put/PutWithJSONParamInput",
+                    data: jsonmsg,
+                    dataType: "json",
+                    success: function (data, status) {
+                        alert(data);
+                    }
+                });
+            });
+
+        });
+
+    </script>
+</head>
+<body>
+    <div>
+        <input type="button" id="btn1" value="Put:无参数请求" /><br /><br />
+        <input type="button" id="btn2" value="Put:实体参数请求" /><br /><br />
+        <input type="button" id="btn3" value="Put:JSON参数请求" /><br /><br />
+
+    </div>
+</body>
+</html>

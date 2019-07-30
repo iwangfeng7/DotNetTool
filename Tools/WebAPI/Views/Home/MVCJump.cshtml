@@ -1,0 +1,68 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MVCJump</title>
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        //无参跳转
+		$(function () {
+			$("#btn1").click(function () {
+				location.href = "/MvcJump/Index";
+			});
+		});
+
+		$(function () {
+			$("#btn2").click(function () {
+				location.href = "/MvcJump/TransitbyResponse";
+			});
+		});
+
+		$(function () {
+			$("#btn3").click(function () {
+				location.href = "/MvcJump/TransitbyRedirect";
+			});
+		});
+
+		$(function () {
+			$("#btn4").click(function () {
+				location.href = "/MvcJump/TransitbyRedirectToAction";
+			});
+		});
+
+		$(function () {
+			$("#btn5").click(function () {
+				location.href = "/MvcJump/TransitbyView";
+			});
+		});
+
+		//有参跳转
+        $(function () {
+            $("#btn6").click(function () {
+                location.href="/MvcJump/IndexWithParam?id=1001&msg='有参跳转参数1'";
+			});
+		});
+	</script>
+</head>
+<body>
+    <div>
+        无参数跳转
+        <a href="/MvcJump/Index">利用 a 标签跳转mvc控制器 </a><br /><br />
+        <input type="button" id="btn1" value="利用 location.href" /><br /><br />
+        <input type="button" id="btn2" value="利用 服务端  Response.Redirect($&quot;/MVCJump/Index&quot;);" /><br /><br />
+        <input type="button" id="btn3" value="利用 服务端  Redirect(&quot;/MVCJump/Index&quot;);" /><br /><br />
+        <input type="button" id="btn4" value="利用 服务端  RedirectToAction(&quot;Index&quot;, &quot;MVCJump&quot;)" /><br /><br />
+        <input type="button" id="btn5" value="利用 服务端  View(&quot;Index&quot;);" /><br /><br />
+        <br /><br />
+        有参数跳转
+        <input type="button" id="btn6" value="利用 location.href 有参数跳转" /><br /><br />
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = null;
+}
+@model WebAPI.Controllers.EntityInfo
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>IndexWithParam</title>
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+    <div>
+        有参数跳转主页<br /><br />
+        return View("IndexWithParam", new EntityInfo() { id = id, msg = msg });<br /><br />
+        view 返回值:<br />
+        @Model.id<br />
+        @Model.msg<br />
+        @Model<br />
+        --------<br /><br />
+        ViewBag 返回值:<br /><br />
+        @ViewBag.viewbagtest
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+﻿
+@{
+    Layout = null;
+}
+@using System.Collections
+@using System.Web.UI.WebControls
+@using WebAPI.Models
+@model WebAPI.Models.Student
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+    <title>MVCHtmlhelper</title>
+</head>
+<body>
+    <div>
+        <a>HTMLHelper</a> <br />
+        <p>
+            HtmlHelper 弱类型,HtmlHelperfor 强类型<br />
+            HtmlHelper 参数为字符串,HtmlHelperfor 参数为Lambda表达式<br />
+            HtmlHelper 编译时不报错,运行是报错<br />
+            HtmlHelperfor 编译时提示错误<br />
+        </p>
+        TextBox<br />
+        @Html.TextBox("StudentName", Model.StudentName, new { @class = "form-control" }) <br />
+        TextBoxFor<br />
+        @Html.TextBoxFor(x => x.StudentName, new { @class = "form-control" })
+        <br /><br /><br />
+        TextArea<br />
+        @Html.TextArea("Textarea1", @Model.StudentName, new { @class = "form-control" }) <br />
+        TextAreaFor<br />
+        @Html.TextAreaFor(x => x.StudentName, new { @class = "form-control" })
+        <br /><br /><br />
+        Password<br />
+        @Html.Password(@Model.Password, @Model.Password) <br />
+        @Html.PasswordFor(x => x.Password)
+        <br /><br /><br />
+        Hidden<br />
+        @Html.Hidden(@Model.Password, @Model.Password)<br />
+        @Html.HiddenFor(x => x.Password)
+        <br /><br /><br />
+        CheckBox<br />
+        @Html.CheckBox("IsNormal", true)<br />
+        @Html.CheckBoxFor(x => x.IsNormal)
+        <br /><br /><br />
+        RadioButton<br />
+        小孩: @Html.RadioButton("IS18", "10")
+        成人: @Html.RadioButton("IS18", "18")<br />
+        @Html.RadioButtonFor(x => x.Age, "8")
+        @Html.RadioButtonFor(x => x.Age, "10")
+        <br /><br /><br />
+        DropDownList <b>设置默认值有问题</b><br />
+        @Html.DropDownList("DList", new SelectList(new List<string> { "male" }), "female")<br />
+        @Html.DropDownListFor(x => x.StudentName,
+            new SelectList(new List<string> { "male" }), "female")
+        <br /><br /><br />
+        ListBox <b>ListBoxFor 有问题</b><br />
+        @Html.ListBox("Lb1", new MultiSelectList(new[] { "Student1", "Student2" }))<br />
+        <br /><br /><br />
+        Display<br />
+        @Html.Display("StudentName")<br />
+        @Html.DisplayFor(x => x.StudentName)
+        <br /><br /><br />
+        LabelFor<br />
+        @Html.Label("StudentName")<br />
+        @Html.LabelFor(x => x.StudentName)
+        <br /><br /><br />
+        Editor<br />
+        @Html.Editor("StudentName")<br />
+        @Html.EditorFor(x => x.StudentName)
+        <br /><br /><br />
+        Form<br />
+        @using (Html.BeginForm("MVCHtmlhelper", "Home", FormMethod.Post, new { @class = "form" }))
+        {
+
+        }
+        <br /><br /><br />
+        Action<br />
+        @Html.ActionLink("ActionLinkText文字","MVCHtmlhelper","Home")<br/>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DeleteRequest</title>
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //Delete:实体参数请求
+            $("#btn1").click(function () {
+                $.ajax({
+                    type: "delete",
+                    url: "/api/delete/DeleteWithEntityParamInput",
+                    data: { id: 1001, msg: "实体参数1" },
+                    success: function (data, status) {
+                        alert(data);
+                    }
+                });
+            });
+            //Delete:两个参数请求
+            $("#btn2").click(function () {
+                $.ajax({
+                    type: "delete",
+                    url: "/api/delete/DeleteWithTwoParamInput",
+                    contentType: "application/json",
+                    data: JSON.stringify({ id: 1001, msg: "实体参数1" }),
+                    success: function (data, status) {
+                        alert(data);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <input type="button" id="btn1" value="Delete:实体参数请求" /><br /><br />
+        <input type="button" id="btn2" value="Delete:两个参数请求" /><br /><br />
+    </div>
+</body>
+</html>
